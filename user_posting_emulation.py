@@ -99,6 +99,47 @@ def run_infinite_post_data_loop(max_count = -1):
 
             count = count + 1
 
+def dump_data(max_count = -1):
+    engine = new_connector.create_db_connector()
+
+    with engine.connect() as connection:
+        pin_string = text("SELECT * FROM pinterest_data")
+        pin_rows = connection.execute(pin_string)
+        
+        for row in pin_rows:
+            pin_result = dict(row._mapping)
+            post_data_to_api(pin_result,'pin')
+            # print(row)
+
+
+def dump_data2(max_count = -1):
+    engine = new_connector.create_db_connector()
+
+    with engine.connect() as connection:
+        pin_string = text("SELECT * FROM geolocation_data")
+        pin_rows = connection.execute(pin_string)
+        
+        for row in pin_rows:
+            geo_result = dict(row._mapping)
+            serialise_datetime(geo_result, 'timestamp')
+            post_data_to_api(geo_result,'geo')
+            # print(row)
+
+def dump_data3(max_count = -1):
+    engine = new_connector.create_db_connector()
+
+    with engine.connect() as connection:
+        pin_string = text("SELECT * FROM user_data")
+        pin_rows = connection.execute(pin_string)
+        
+        for row in pin_rows:
+            user_result = dict(row._mapping)
+            serialise_datetime(user_result, 'date_joined')
+            post_data_to_api(user_result,'user')
+            # print(row)
+
+
 if __name__ == "__main__":
     print('Working')
-    run_infinite_post_data_loop(1)
+    dump_data3()
+    #run_infinite_post_data_loop(1)
