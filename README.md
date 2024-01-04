@@ -13,6 +13,10 @@ At minimum, your README file should contain the following information:
     File structure of the project
 
     The Pinterest Data Pipeline is an educational prototype for data gathering using common big data tooks such as Kafka, Spark, Airflow and Kinesis. Through the process most services were run locally, then implented in the cloud using Databricks and AWS.
+
+## Architecture
+<img src="https://raw.githubusercontent.com/DanBachmann/Pinterest_data_pipeline/main/documentation_resources/AiCore%20Pinterest%20Pipeline.png">
+[Notebook view with output](DataBricks/Report_Request_Notebook_Output.html)
 ### Concepts learned/demonstrated
 <ul>
 <li>Using an EC2 instance via SSH, SSHFS and SCP.
