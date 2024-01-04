@@ -58,7 +58,7 @@ def serialise_datetime(data, datetime_field):
 def run_infinite_post_data_loop(max_count = -1):
     count = 0
     while max_count<0 or count < max_count:
-        sleep(random.randrange(0, 2))
+        sleep(random.randrange(0, 1))
         random_row = random.randint(0, 11000)
         engine = new_connector.create_db_connector()
 
@@ -99,7 +99,7 @@ def run_infinite_post_data_loop(max_count = -1):
 
             count = count + 1
 
-def dump_data(max_count = -1):
+def post_all_pin_records(max_count = -1):
     engine = new_connector.create_db_connector()
 
     with engine.connect() as connection:
@@ -112,7 +112,7 @@ def dump_data(max_count = -1):
             # print(row)
 
 
-def dump_data2(max_count = -1):
+def post_all_geo_records(max_count = -1):
     engine = new_connector.create_db_connector()
 
     with engine.connect() as connection:
@@ -125,7 +125,7 @@ def dump_data2(max_count = -1):
             post_data_to_api(geo_result,'geo')
             # print(row)
 
-def dump_data3(max_count = -1):
+def post_all_user_records(max_count = -1):
     engine = new_connector.create_db_connector()
 
     with engine.connect() as connection:
@@ -140,6 +140,5 @@ def dump_data3(max_count = -1):
 
 
 if __name__ == "__main__":
-    print('Working')
-    dump_data3()
-    #run_infinite_post_data_loop(1)
+    print('Ensure the Confluent/Kafka process is running on the EC2 instance before posting data')
+    run_infinite_post_data_loop()
