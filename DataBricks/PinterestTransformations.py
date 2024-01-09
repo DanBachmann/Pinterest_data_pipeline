@@ -1,9 +1,7 @@
 from pyspark.sql.functions import *
 
 def clean_pin(df_pin):
-    # Replace empty entries and entries with no relevant data in each column with Nones
     df_pin = df_pin.replace({'': None})
-    # TODO: clear out error entry columns (no relevant data)
 
     # Perform the necessary transformations on the follower_count to ensure every entry is a number. Make sure the data type of this column is an int.
     #df_pin = df_pin.replace({'k': '000'}, subset=['follower_count']).replace({'M': '000000'}, subset=['follower_count'])  # ???: didn't work, but expected to

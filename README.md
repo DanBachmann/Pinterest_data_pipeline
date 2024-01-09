@@ -11,19 +11,19 @@ The Pinterest Data Pipeline is takes example Pinterest user generated data throu
 
 ### Concepts learned/demonstrated
 <ul>
-<li>Using an EC2 instance via SSH, SSHFS and SCP.
-<li>Local configuration of Kafka topics via command line.
-<li>Basic MSK configuration in the AWS console.
-<li>Kinesis stream connectivity with API Gateway
-<li>Airflow to schedule jobs both on prem and in AWS (WMAA)
-<li>Use of Databricks to:
-    <ul>
-        <li>Connect to AWS S3 bucket
-        <li>Load a series of files into a Spark dataframe
-        <li>Connect to an AWS Kinesis data stream
-        <li>Using PySpark to clean the data/streams and provide basic query results for static data
-        <li>Store data transformed in DataBricks data lake
-    </ul>
+    <li>Using an EC2 instance via SSH, SSHFS and SCP.
+    <li>Local configuration of Kafka topics via command line.
+    <li>Basic MSK configuration in the AWS console.
+    <li>Kinesis stream connectivity with API Gateway
+    <li>Airflow to schedule jobs both on prem and in AWS (WMAA)
+    <li>Use of Databricks to:
+        <ul>
+            <li>Connect to AWS S3 bucket
+            <li>Load a series of files into a Spark dataframe
+            <li>Connect to an AWS Kinesis data stream
+            <li>Using PySpark to clean the data/streams and provide basic query results for static data
+            <li>Store data transformed in DataBricks data lake
+        </ul>
 </ul>
 
 ## Report Request Output
@@ -38,26 +38,31 @@ While a good portion of the system could be handled with SQL, the focus was to m
 The project has the following folder structure with the naming rule is any script with a 0 as the first character in the file name is for initial configutaton and only to be run once. More details will be explained in the "Set-up &amp; usage instructions" section of this file.
 Note: The 0 prefixed set-up file naming convention excludes files starting with 0x115306525 which are naming requirements for this project AWS access. 
 <ul>
-<li>DataBricks</li>
-    <ul><li>PinterestTransformations.py</li>Data cleaning/transformation functions used in the Jypiter notebooks
-    <li>AiCore Pinterest project.ipynb</li>First set of milestones simulating the legacy data handling and report requests
-    <li>AiCore Read Kinesis.ipynb</li>Cloud data stream handing using DataBricks and AWS technologies
-    <ul><li>MWAA_S3_bucket
-        <ul><li>0x115306525_dag.py</li>DAG file for Airflow in AWS (MWAA) to execute "AiCore Pinterest project.ipynb"
+    <li>DataBricks</li>
+    <ul>
+        <li>PinterestTransformations.py</li>Data cleaning/transformation functions used in the Jypiter notebooks
+        <li>AiCore Pinterest project.ipynb</li>First set of milestones simulating the legacy data handling and report requests
+        <li>AiCore Read Kinesis.ipynb</li>Cloud data stream handing using DataBricks and AWS technologies
+        <ul>
+            <li>MWAA_S3_bucket
+            <ul>
+                <li>0x115306525_dag.py</li>DAG file for Airflow in AWS (MWAA) to execute "AiCore Pinterest project.ipynb"
+            </ul>
+        </ul>
+    <li>documentation_resources</li>Notebooks with the reporting output & documentation support files
+    <li>Kineses<ul><li>0create_kinesis_streams.py</li>Code to be run once to create the Kinesis data streams in AWS
+    <li>test_stream_api.py</li>Simple tests to check the APIs are in place
+    <li>user_posting_emulation_streaming.py</li>Simulates user interaction with results going to Kinesis streams
+</ul>
+    <li>legacy_simulation</li><i>See the "Set-up &amp; usage instructions" for more information on these files</i>
+    <li>run_this_to_send_messages_after_ec2_kafka_started.sh
+    <ul>
+        <li>run_on_ec2</li>
+        <ul>
+            <li>0setup_topics_and_connectors.sh</li>
+        <li>1run_this_on_kafka_ec2.sh</li>
         </ul>
     </ul>
-<li>documentation_resources</li>Notebooks with the reporting output & documentation support files
-<li>Kineses<ul><li>0create_kinesis_streams.py</li>Code to be run once to create the Kinesis data streams in AWS
-<li>test_stream_api.py</li>Simple tests to check the APIs are in place
-<li>user_posting_emulation_streaming.py</li>Simulates user interaction with results going to Kinesis streams
-</ul>
-<li>legacy_simulation</li><i>See the "Set-up &amp; usage instructions" for more information on these files</i>
-    <li>run_this_to_send_messages_after_ec2_kafka_started.sh
-    <ul><li>run_on_ec2</li>
-        <ul><li>0setup_topics_and_connectors.sh</li>
-        <li>1run_this_on_kafka_ec2.sh</li>
-</ul>
-</ul>
 </ul>
 </ul>
 
